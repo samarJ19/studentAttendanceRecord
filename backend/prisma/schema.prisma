@@ -1,0 +1,135 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  firstName String
+  lastName  String
+  role      Role     @default(STUDENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  admin     Admin?
+  student   Student?
+  teacher   Teacher?
+}
+
+model Student {
+  id              String       @id @default(uuid())
+  userId          String       @unique
+  rollNumber      String       @unique
+  currentSemester Int
+  branchId        String
+  section         Sections?     @default(A)
+  attendances     Attendance[]
+  enrollments     Enrollment[]
+  branch          Branch       @relation(fields: [branchId], references: [id])
+  user            User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Teacher {
+  id                  String               @id @default(uuid())
+  userId              String               @unique
+  employeeId          String               @unique  //what will be this ?
+  user                User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+  teachingAssignments TeachingAssignment[]
+}
+
+model Admin {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Branch {
+  id                  String               @id @default(uuid())
+  name                String               @unique
+  courses             Course[]
+  students            Student[]
+  teachingAssignments TeachingAssignment[]
+}
+
+model Course {
+  id                  String               @id @default(uuid())
+  code                String               @unique
+  name                String
+  semester            Int
+  branchId            String
+  branch              Branch               @relation(fields: [branchId], references: [id])
+  enrollments         Enrollment[]
+  teachingAssignments TeachingAssignment[]
+}
+
+model TeachingAssignment {
+  id           String    @id @default(uuid())
+  teacherId    String
+  courseId     String
+  branchId     String
+  semester     Int
+  section      Sections 
+  academicYear String
+  active       Boolean   @default(true)
+  sessions     Session[]
+  branch       Branch    @relation(fields: [branchId], references: [id])
+  course       Course    @relation(fields: [courseId], references: [id])
+  teacher      Teacher   @relation(fields: [teacherId], references: [id])
+
+  @@unique([teacherId, courseId, branchId, semester, academicYear])
+}
+
+model Enrollment {
+  id           String       @id @default(uuid())
+  studentId    String
+  courseId     String
+  semester     Int
+  academicYear String
+  section      Sections     @default(A)
+  active       Boolean      @default(true)
+  attendances  Attendance[]
+  course       Course       @relation(fields: [courseId], references: [id])
+  student      Student      @relation(fields: [studentId], references: [id])
+
+  @@unique([studentId, courseId, semester, academicYear])
+}
+
+model Session {
+  id           String             @id @default(uuid())
+  date         DateTime
+  topic        String?
+  assignmentId String
+  attendances  Attendance[]
+  assignment   TeachingAssignment @relation(fields: [assignmentId], references: [id])
+}
+
+model Attendance {
+  id           String     @id @default(uuid())
+  sessionId    String
+  studentId    String
+  enrollmentId String
+  present      Boolean
+  markedAt     DateTime   @default(now())
+  markedBy     String
+  enrollment   Enrollment @relation(fields: [enrollmentId], references: [id])
+  session      Session    @relation(fields: [sessionId], references: [id])
+  student      Student    @relation(fields: [studentId], references: [id])
+
+  @@unique([sessionId, studentId])
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+enum Sections {
+  A
+  B
+  NONE
+}
