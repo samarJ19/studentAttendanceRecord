@@ -53,7 +53,7 @@ const AdminDashboard = () => {
     academicYear: currentAcademicYear,
   });
 
-  const [filters, setFilters] = useState({
+  const [ filters, setFilters] = useState({
     userRole: "",
     userBranchId: "",
     courseBranchId: "",
@@ -209,6 +209,9 @@ const AdminDashboard = () => {
     try {
       setLoading(true);
       await api.post("/api/admin/enrollments/batch", batchEnrollment);
+      // Refresh courses after assignment to see updated data
+      const coursesRes = await api.get("/api/admin/courses");
+      setCourses(coursesRes.data);
       setBatchEnrollment({
         studentIds: [],
         courseIds: [],
