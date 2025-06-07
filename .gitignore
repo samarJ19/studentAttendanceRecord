@@ -1,7 +1,8 @@
-.env
+**/.env
 __pycache__
 ngrok.ext
 request(1).pdf
 request.md
 twilioid.txt
 node_modules
+/backend/.env
