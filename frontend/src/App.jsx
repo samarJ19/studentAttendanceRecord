@@ -13,7 +13,7 @@ import StudentAttendanceDashboard from './pages/student/Dashboard';
 // Protected route component
 const ProtectedRoute = ({ element, allowedRoles }) => {
   const { user, loading } = useAuth();
-  
+
   if (loading) {
     return <div className="flex items-center justify-center h-screen">Loading...</div>;
   }
@@ -21,7 +21,6 @@ const ProtectedRoute = ({ element, allowedRoles }) => {
   if (!user) {
     return <Navigate to="/login" />;
   }
-  
   if (!allowedRoles.includes(user.role)) {
     return <Navigate to="/unauthorized" />;
   }
@@ -34,8 +33,8 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="min-h-screen bg-gray-100">
-          {/* <Header /> */}
-          <main className="container mx-auto px-4 py-8">
+      
+          <main className="container mx-auto ">
             <Routes>
               <Route path="/login" element={<Login />} />
               
