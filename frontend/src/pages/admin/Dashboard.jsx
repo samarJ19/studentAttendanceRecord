@@ -25,6 +25,7 @@ import EnrollStudentsForm from "./components/EnrollStudentsForm";
 import PromoteStudentForm from "./components/PromoteStudentForm";
 import { useAdminDashboard } from "./useAdminDashboardData";
 
+
 const AdminDashboard = () => {
   const {
     users,
@@ -115,7 +116,7 @@ const AdminDashboard = () => {
   const IconComponent = currentTabConfig.icon;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 relative overflow-hidden blended-scrollbar">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         {/* Primary gradient overlay */}
@@ -145,7 +146,7 @@ const AdminDashboard = () => {
         )}
 
         {/* Spectacular Page Header */}
-        <div className="mb-8 text-center">
+        <div className="mb-8 text-center ">
           <div className="flex items-center justify-center gap-6 mb-6">
             <div className={`p-4 rounded-3xl bg-gradient-to-r ${currentTabConfig.gradient} shadow-2xl shadow-purple-500/25 animate-pulse`}>
               <IconComponent className="h-8 w-8 text-white" />
@@ -224,7 +225,7 @@ const AdminDashboard = () => {
                         </div>
 
                         {/* Users Table */}
-                        <div className="bg-white/15 backdrop-blur-xl rounded-2xl border border-white/25 overflow-hidden shadow-xl">
+                        <div className="bg-white/15 backdrop-blur-xl rounded-2xl border border-white/25 overflow-hidden  shadow-xl">
                           <UserTable users={users} getBranchName={getBranchName} />
                         </div>
                       </div>
@@ -257,7 +258,7 @@ const AdminDashboard = () => {
                           </div>
                         </div>
 
-                        <div className="bg-white/15 backdrop-blur-xl rounded-3xl border border-white/25 overflow-hidden shadow-xl">
+                        <div className="bg-white/15 backdrop-blur-xl rounded-3xl border border-white/25 overflow-hidden  shadow-xl">
                           <BranchTable branches={branches} />
                         </div>
                       </div>
@@ -302,7 +303,7 @@ const AdminDashboard = () => {
                         </div>
 
                         {/* Courses Table */}
-                        <div className="bg-white/15 backdrop-blur-xl rounded-2xl border border-white/25 overflow-hidden shadow-xl">
+                        <div className="bg-white/15 backdrop-blur-xl rounded-3xl border border-white/25 overflow-hidden shadow-xl">
                           <CourseTable
                             courses={courses}
                             getBranchName={getBranchName}

@@ -1,8 +1,8 @@
 export default function CourseTable ({courses,getBranchName}) {
     return (
-        <div className="animate-in fade-in-50 slide-in-from-top-2 duration-500">
+        <div className="animate-in fade-in-50 slide-in-from-top-2 duration-500 ">
             <div className="bg-gradient-to-br from-white/15 via-white/10 to-white/5 backdrop-blur-2xl border border-white/20 shadow-2xl rounded-3xl overflow-hidden">
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto blended-scrollbar">
                     <table className="min-w-full">
                         <thead className="bg-gradient-to-r from-emerald-500/20 via-teal-500/20 to-cyan-500/20 backdrop-blur-xl border-b border-white/25">
                             <tr>

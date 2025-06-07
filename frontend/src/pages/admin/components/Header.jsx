@@ -1,5 +1,6 @@
 import { GraduationCap, LogOut } from "lucide-react"
 import { useNavigate } from "react-router-dom";
+import api from "../../../services/api";
 
 
 export const Header = ()=>{

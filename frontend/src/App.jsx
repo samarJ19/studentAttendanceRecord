@@ -32,7 +32,7 @@ function App() {
   return (
     <AuthProvider>
       <Router>
-        <div className="min-h-screen bg-gray-100">
+        <div className="min-h-screen bg-gray-100 blended-scrollbar">
       
           <main className="container mx-auto ">
             <Routes>

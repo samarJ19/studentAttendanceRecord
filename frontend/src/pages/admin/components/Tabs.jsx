@@ -21,8 +21,8 @@ export const Tabs = ({activeTab, setActiveTab })=>{
                             onClick={() => setActiveTab(tab.id)}
                             className={`flex bg-transparent items-center px-6 py-4 font-medium text-sm whitespace-nowrap transition-all duration-200 ${
                               activeTab === tab.id
-                                ? "border-b-2 border-blue-500 text-blue-600 bg-blue-50"
-                                : "text-gray-500 hover:text-gray-700 "
+                                ? "border-b-2 border-blue-500 text-black bg-blue-50"
+                                : "text-white/90 hover:text-black "
                             }`}
                           >
                             <Icon size={18} className="mr-2" />

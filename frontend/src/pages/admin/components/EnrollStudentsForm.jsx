@@ -37,7 +37,7 @@ export default function EnrollStudentsForm({
                 <h2 className="text-2xl font-bold text-white">Select Students</h2>
               </div>
               <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-lg">
-                <div className="max-h-80 overflow-y-auto space-y-3 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                <div className="max-h-80 overflow-y-auto space-y-3 blended-scrollbar">
                   {getStudents().map((student) => (
                     <label
                       key={student.id}
@@ -76,7 +76,7 @@ export default function EnrollStudentsForm({
                 <h2 className="text-2xl font-bold text-white">Select Courses</h2>
               </div>
               <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 shadow-lg">
-                <div className="max-h-80 overflow-y-auto space-y-3 scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+                <div className="max-h-80 overflow-y-auto space-y-3 blended-scrollbar">
                   {courses.map((course) => (
                     <label
                       key={course.id}
