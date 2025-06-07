@@ -7,7 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middlewares
-const allowedOrigins = ['http://localhost:5173', 'https://frontend-app.com'];
+const allowedOrigins = ['http://localhost:5173', 'https://student-attendance-record.vercel.app/'];
 
 const corsOptions = {
   origin: function (origin, callback) {
